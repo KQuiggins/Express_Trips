@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+  <div class="row">
+    <div class="col">
+      <h2>Filter trips by city</h2>
+      <form method="GET" action="/tripsByCity">
+        <div class="form-group">
+          <label for="city">City</label>
+          <select class="form-control" id="city" name="city">
+            <option value="chicago">Chicago</option>
+            <option value="cincinnati">Cincinnati</option>
+            <option value="nashville">Nashville</option>
+            <option value="indianapolis">Indianapolis</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary mt-4">Filter trips</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

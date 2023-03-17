@@ -1,0 +1,45 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+  <div class="row">
+    <div class="col">
+      <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">Trip data saved successfully!</h4>
+        <p>Your trip data has been saved to the database.</p>
+        <hr>
+        <h5>Saved Trip Details:</h5>
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <th>City</th>
+              <td>{{ trip.city }}</td>
+            </tr>
+            <tr>
+              <th>Date</th>
+              <td>{{ trip.date }}</td>
+            </tr>
+            <tr>
+              <th>Driver</th>
+              <td>{{ trip.driver }}</td>
+            </tr>
+            <tr>
+              <th>Miles</th>
+              <td>{{ trip.miles }}</td>
+            </tr>
+            <tr>
+              <th>Gallons</th>
+              <td>{{ trip.gallons }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="mb-0">
+          <a href="/" class="btn btn-primary">Go back to the list of trips</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

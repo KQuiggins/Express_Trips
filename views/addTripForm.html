@@ -1,14 +1,14 @@
 {% extends 'index.html' %} {% block content %}
 
-<h2>Add Trip Data</h2>
+<h2 class="mt-4">Add Trip Data</h2>
 
 <form method="POST" action="/addTripData" class="mt-4">
 	<div class="container">
 		<div class="row">
 			<div class="col">
 				<div class="form-group">
-					<label for="city">City</label>
-					<select class="form-control" name="city" id="city" required>
+					<label for="city" class="">City</label>
+					<select class="form-control" name="city" id="city" style="width: 200px;" required>
 						<option value="">Select City</option>
 						<option value="Chicago">Chicago</option>
 						<option value="Cincinnati">Cincinnati</option>
@@ -17,7 +17,7 @@
 					</select>
 				</div>
 				<div class="form-group">
-					<label for="date">Date</label>
+					<label for="date" class="mt-2">Date</label>
 					<input
 						type="text"
 						class="form-control"
@@ -25,36 +25,40 @@
 						id="date"
 						placeholder="YYYY-MM-DD"
 						required
+						style="width: 200px;"
 					/>
 				</div>
 				<div class="form-group">
-					<label for="driver">Driver (andy, barb, carl, dana)</label>
+					<label class="mt-2" for="driver">Driver <span class="text-info">(andy, barb, carl, dana)</span></label>
 					<input
 						type="text"
 						class="form-control"
 						name="driver"
 						id="driver"
 						required
+						style="width: 200px;"
 					/>
 				</div>
 				<div class="form-group">
-					<label for="miles">Miles</label>
+					<label for="miles" class="mt-2">Miles</label>
 					<input
 						type="number"
 						class="form-control"
 						name="miles"
 						id="miles"
 						required
+						style="width: 200px;"
 					/>
 				</div>
 				<div class="form-group">
-					<label for="gallons">Gallons</label>
+					<label for="gallons" class="mt-2">Gallons</label>
 					<input
 						type="number"
 						class="form-control"
 						name="gallons"
 						id="gallons"
 						required
+						style="width: 200px;"
 					/>
 				</div>
 			</div>

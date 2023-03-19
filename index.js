@@ -118,6 +118,17 @@ try {
     res.status(500).send('Error retrieving trips by city.');
 }
 });
+
+app.post('/deleteTrip', async (req, res) => {
+    try {
+      const date = req.body.date;
+      await Trips.deleteOne({ date: date });
+      res.redirect('/');
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Error deleting trip.');
+    }
+  });
   
   
 

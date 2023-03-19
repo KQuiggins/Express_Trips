@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<p>Trip Date: {{tripInfo.date}}</p>
+<p class="mt-4 text-center text-muted font-weight-bold">Trip Date: {{tripInfo.date}}</p>
 
 <form method="POST" action="/updateTrip" class="mt-4">
   <input type="hidden" name="trip_date" value="{{tripInfo.date}}">
@@ -21,7 +21,7 @@
               <td>
                 <button id="miles_button" type="button" class="btn btn-primary btn-sm">Edit</button>
                 <span id="miles_input" style="display: none">
-                  <input type="text" name="newMiles" value="{{tripInfo.miles}}" class="form-control form-control-sm" size="6">
+                  <input type="text" name="newMiles" value="{{tripInfo.miles}}" class="form-control form-control-sm" style="width: 100px;">
                   <small class="form-text text-muted">Enter New Value</small>
                 </span>
               </td>
@@ -32,7 +32,7 @@
               <td>
                 <button id="gallons_button" type="button" class="btn btn-primary btn-sm">Edit</button>
                 <span id="gallons_input" style="display: none">
-                  <input type="text" name="newGallons" value="{{tripInfo.gallons}}" class="form-control form-control-sm" size="6">
+                  <input type="text" name="newGallons" value="{{tripInfo.gallons}}" class="form-control form-control-sm" style="width: 100px;">
                   <small class="form-text text-muted">Enter New Value</small>
                 </span>
               </td>

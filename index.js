@@ -44,31 +44,56 @@ app.get('/edit', async (req, res) => {
   }
 });
 
+// app.post('/updateTrip', async (req, res) => {
+//   try {
+//       const tripDate = req.body.trip_date;
+//       const newMiles = req.body.newMiles;
+//       const newGallons = req.body.newGallons;
+
+//       const trip = await Trips.findOne({ date: tripDate });
+
+//       if (trip) {
+//           if (newMiles) {
+//               trip.miles = newMiles;
+//           }
+//           if (newGallons) {
+//               trip.gallons = newGallons;
+//           }
+//           await trip.save();
+//           res.redirect('/');
+//       } else {
+//           res.status(404).send('Trip not found.');
+//       }
+//   } catch (error) {
+//       console.error(error);
+//       res.status(500).send('Error updating trip data.');
+//   }
+// });
 app.post('/updateTrip', async (req, res) => {
-  try {
-      const tripDate = req.body.trip_date;
+    try {
+      const tripId = req.body._id;
       const newMiles = req.body.newMiles;
       const newGallons = req.body.newGallons;
-
-      const trip = await Trips.findOne({ date: tripDate });
-
+  
+      const trip = await Trips.findOne({ _id: tripId });
+  
       if (trip) {
-          if (newMiles) {
-              trip.miles = newMiles;
-          }
-          if (newGallons) {
-              trip.gallons = newGallons;
-          }
-          await trip.save();
-          res.redirect('/');
+        if (newMiles) {
+          trip.miles = newMiles;
+        }
+        if (newGallons) {
+          trip.gallons = newGallons;
+        }
+        await trip.save();
+        res.redirect(`/?id=${tripId}`);
       } else {
-          res.status(404).send('Trip not found.');
+        res.status(404).send('Trip not found.');
       }
-  } catch (error) {
+    } catch (error) {
       console.error(error);
       res.status(500).send('Error updating trip data.');
-  }
-});
+    }
+  });
 
 app.get('/addTrip', (req, res) => {
   res.render('addTripForm');
@@ -110,15 +135,16 @@ app.get('/getCityForm', (req, res) => {
 
 
 app.get('/tripsByCity', async (req, res) => {
-try {
-    const city = req.query.city;
-    const trips = await Trips.find({ city: city });
-    res.render('showAll.html', { trips });
-} catch (error) {
-    console.error(error);
-    res.status(500).send('Error retrieving trips by city.');
-}
-});
+    try {
+      const city = req.query.city.toLowerCase();
+      const trips = await Trips.find({ city: { $regex: new RegExp(`^${city}$`, 'i') } });
+      res.render('showAll.html', { trips });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Error retrieving trips by city.');
+    }
+  });
+  
 
 app.post('/deleteTrip', async (req, res) => {
     try {
@@ -132,10 +158,6 @@ app.post('/deleteTrip', async (req, res) => {
   });
   
   
-
-
-
-
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');

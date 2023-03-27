@@ -1,3 +1,4 @@
+const { MongoClient, ServerApiVersion } = require('mongodb');
 const mongoose = require('mongoose');
 //mongoose.connect('mongodb://127.0.0.1:27017/travel');
 
@@ -8,14 +9,14 @@ const uri = process.env.MONGODB_URI
 //const compass_uri = process.env.COMPASS_URI
 
 // Connect to the MongoDB Atlas cluster
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => {
-    console.log('Connected to MongoDB')
-  })
-  .catch((error) => {
-    console.log('Error connecting to MongoDB:', error.message)
-  })
 
+
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
 const tripSchema = new mongoose.Schema({
     driver: {type: String, required: true},
     date: {type: String, required: true},

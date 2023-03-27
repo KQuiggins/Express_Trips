@@ -1,16 +1,24 @@
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
 const mongoose = require('mongoose');
-require('dotenv').config();
+//require('dotenv').config();
 
 const uri = process.env.MONGODB_URI;
 
 // Connect to the MongoDB Atlas cluster
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => {
+async function connectToDatabase() {
+  try {
+    await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
     console.log('Connected to MongoDB Atlas!');
-  })
-  .catch((err) => {
+  } catch (err) {
     console.error(err);
-  });
+  }
+}
+
+connectToDatabase();
+
 
 const tripSchema = new mongoose.Schema({
   driver: {type: String, required: true},

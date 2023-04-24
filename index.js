@@ -44,31 +44,7 @@ app.get('/edit', async (req, res) => {
   }
 });
 
-// app.post('/updateTrip', async (req, res) => {
-//   try {
-//       const tripDate = req.body.trip_date;
-//       const newMiles = req.body.newMiles;
-//       const newGallons = req.body.newGallons;
 
-//       const trip = await Trips.findOne({ date: tripDate });
-
-//       if (trip) {
-//           if (newMiles) {
-//               trip.miles = newMiles;
-//           }
-//           if (newGallons) {
-//               trip.gallons = newGallons;
-//           }
-//           await trip.save();
-//           res.redirect('/');
-//       } else {
-//           res.status(404).send('Trip not found.');
-//       }
-//   } catch (error) {
-//       console.error(error);
-//       res.status(500).send('Error updating trip data.');
-//   }
-// });
 app.post('/updateTrip', async (req, res) => {
     try {
       const tripId = req.body._id;
